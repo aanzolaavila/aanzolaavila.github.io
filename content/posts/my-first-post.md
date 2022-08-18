@@ -1,7 +1,7 @@
 +++
 title = "My First Post"
 date = "2022-08-17T20:21:48-05:00"
-author = "Alejandro Anzola-Avila"
+author = "Alejandro Anzola-Ávila"
 authorTwitter = "aanzolaavila" #do not include @
 cover = ""
 tags = ["test", "hugo", "mathjax", "latex", "markdown"]
