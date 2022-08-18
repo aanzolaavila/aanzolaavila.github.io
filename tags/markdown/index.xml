@@ -3,7 +3,7 @@ An image Smiling Friends Some code $ echo &amp;#34;this is an example&amp;#34; S
 Some random change.</description><content>&lt;p>Some text.&lt;/p>
 &lt;h1 id="an-image">An image&lt;/h1>
 &lt;figure class="left" >
-&lt;img src="https://aanzolaavila.github.io/personal-blog/img/smiling-friends.jpg" alt="Smiling Friends" />
+&lt;img src="img/smiling-friends.jpg" alt="Smiling Friends" />
 &lt;figcaption class="center" >Smiling Friends&lt;/figcaption>
 &lt;/figure>
 &lt;h1 id="some-code">Some code&lt;/h1>
