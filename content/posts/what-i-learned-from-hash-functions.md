@@ -176,7 +176,7 @@ Long story short, we have this constraints for each property:
 
 There is an additional property not often discussed: **Non-malleability**.
 
-> Given {{< mathjax/inline >}}\( y = h(x) \){{< /mathjax/inline >}}, it should be *infeasible* to compute: {{< mathjax/block >}} \[ y^{\prime} = h(f(x)) \] {{< /mathjax/block >}} Where {{< mathjax/inline >}}\( f \){{< /mathjax/inline >}} is a simple function, such as {{< mathjax/inline >}}\( h(x+1) ; h(2x) \){{< /mathjax/inline >}}.
+> Given {{< mathjax/inline >}}\( y = h(x) \){{< /mathjax/inline >}}, it should be *infeasible* to compute: {{< mathjax/block >}} \[ y^{\prime} = h(f(x)) \] {{< /mathjax/block >}} Such that {{< mathjax/inline >}}\( y = y^{\prime} \){{< /mathjax/inline >}}, where {{< mathjax/inline >}}\( f \){{< /mathjax/inline >}} is a simple function, such as {{< mathjax/inline >}}\( h(x+1) ; h(2x) \){{< /mathjax/inline >}}.
 
 Not every hash function has this property.
 
