@@ -1,4 +1,4 @@
-baseURL = 'https://aanzolaavila.github.io/personal-blog'
+baseURL = 'https://aanzolaavila.github.io'
 languageCode = 'en-us'
 title = 'personal blog'
 theme = "terminal"
@@ -21,7 +21,7 @@ theme = "terminal"
 
   [languages.en.params.logo]
     logoText = "aanzolaavila"
-    logoHomeLink = "/personal-blog"
+    logoHomeLink = "/"
 
   [languages.en.menu]
     # [[languages.en.menu.main]]
