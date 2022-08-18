@@ -168,7 +168,8 @@ times.&lt;/p>
 , it should be &lt;em>infeasible&lt;/em> to compute: &lt;div class="has-mathjax">
 \[ y^{\prime} = h(f(x)) \]
 &lt;/div>
-Where &lt;span class="has-mathjax">\( f \)&lt;/span>
+Such that &lt;span class="has-mathjax">\( y = y^{\prime} \)&lt;/span>
+, where &lt;span class="has-mathjax">\( f \)&lt;/span>
 is a simple function, such as &lt;span class="has-mathjax">\( h(x+1) ; h(2x) \)&lt;/span>
 .&lt;/p>
 &lt;/blockquote>
