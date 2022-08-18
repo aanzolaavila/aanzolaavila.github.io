@@ -15,7 +15,7 @@ hideComments = true
 Some text.
 
 # An image
-{{< figure src="img/smiling-friends.jpg" alt="Smiling Friends" caption="Smiling Friends">}}
+{{< figure src="/personal-blog/img/smiling-friends.jpg" alt="Smiling Friends" caption="Smiling Friends">}}
 
 # Some code
 ```bash
