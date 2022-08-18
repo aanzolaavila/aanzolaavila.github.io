@@ -21,7 +21,7 @@ theme = "terminal"
 
   [languages.en.params.logo]
     logoText = "aanzolaavila"
-    logoHomeLink = "/"
+    logoHomeLink = "/personal-blog"
 
   [languages.en.menu]
     # [[languages.en.menu.main]]
