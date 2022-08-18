@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Terminal</title><link>http://example.org/posts/</link><description>Recent content in Posts on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 17 Aug 2022 20:21:48 -0500</lastBuildDate><atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>My First Post</title><link>http://example.org/posts/my-first-post/</link><pubDate>Wed, 17 Aug 2022 20:21:48 -0500</pubDate><guid>http://example.org/posts/my-first-post/</guid><description>Some text.
-An image Smiling Friends Some code $ echo &amp;#34;this is an example&amp;#34; Some math \[ g = f(x) = \int_0^\infty x\ dx \] Some inline math Inline shortcode \(a \ne 0\) with Mathjax.</description><content>&lt;p>Some text.&lt;/p>
+An image Smiling Friends Some code $ echo &amp;#34;this is an example&amp;#34; Some math \[ g = f(x) = \int_0^\infty x\ dx \] Some inline math Inline shortcode \(a \ne 0\) with Mathjax.
+Some random change.</description><content>&lt;p>Some text.&lt;/p>
 &lt;h1 id="an-image">An image&lt;/h1>
 &lt;figure class="left" >
 &lt;img src="http://example.org/img/smiling-friends.jpg" alt="Smiling Friends" />
@@ -13,4 +14,5 @@ An image Smiling Friends Some code $ echo &amp;#34;this is an example&amp;#34; S
 &lt;/div>
 &lt;h2 id="some-inline-math">Some inline math&lt;/h2>
 &lt;p>Inline shortcode &lt;span class="has-mathjax">\(a \ne 0\)&lt;/span>
-with Mathjax.&lt;/p></content></item></channel></rss>
+with Mathjax.&lt;/p>
+&lt;p>Some random change.&lt;/p></content></item></channel></rss>
