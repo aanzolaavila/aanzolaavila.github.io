@@ -172,5 +172,27 @@ Long story short, we have this constraints for each property:
 
 ---
 
+## Bonus
+
+There is an additional property not often discussed: **Non-malleability**.
+
+> Given {{< mathjax/inline >}}\( y = h(x) \){{< /mathjax/inline >}}, it should be *infeasible* to compute: {{< mathjax/block >}} \[ y^{\prime} = h(f(x)) \] {{< /mathjax/block >}} Where {{< mathjax/inline >}}\( f \){{< /mathjax/inline >}} is a simple function, such as {{< mathjax/inline >}}\( h(x+1) ; h(2x) \){{< /mathjax/inline >}}.
+
+Not every hash function has this property.
+
+Turns out that there is two known types of hash functions with different types of contruction: Markle-Dangard construction (MD5, SHA-1, SHA2), and Sponge construction (SHA3).
+
+Markle-Dangard computes the hash iteratably with blocks, processing a chunk of the input information at a time, meaning that an input is {{< mathjax/inline >}}\( m = m_{1} || m_{2} || \cdots || m_{l} \){{< /mathjax/inline >}}, therefore, the hash function iterates through it like this {{< mathjax/inline >}}\( y_{i} = h(y_{i-1}, m_{i}) \){{< /mathjax/inline >}} and {{< mathjax/inline >}}\( h(m) = y_{l} \){{< /mathjax/inline >}}, each block is a fixed size, if the input size is not a multiple of the block size, there is a padding added at the end that does not alter the output of the entire function (i.e. a bunch of zeros to complete the block).
+
+In particular, Markle-Dangard construction is susceptible to a Length Extension Attack (LEA), which comes from that padding, in particular if we give the hash function more blocks that are filled with zeroes, it will yield the same result
+
+{{< mathjax/block >}}
+\[ h(m_{1} || \cdots || m_{l}) = h(m_{1} || \cdots || m_{l} || \text{0000000}) \]
+{{< /mathjax/block >}}
+
+Meaning {{< mathjax/inline >}}\( y = y^{\prime} \){{< /mathjax/inline >}}, violating the property.
+
+---
+
 ## Conclusion
 This was an interesting post to write, not only I wrote about something that I find very interesting, but also something that may be useful/interesting to someone else that may find it, I'm pretty sure I would have loved to find this kind of explanations when I was first dwelving into these subjects.
