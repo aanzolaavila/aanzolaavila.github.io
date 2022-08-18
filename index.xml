@@ -161,6 +161,30 @@ times.&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;hr>
+&lt;h2 id="bonus">Bonus&lt;/h2>
+&lt;p>There is an additional property not often discussed: &lt;strong>Non-malleability&lt;/strong>.&lt;/p>
+&lt;blockquote>
+&lt;p>Given &lt;span class="has-mathjax">\( y = h(x) \)&lt;/span>
+, it should be &lt;em>infeasible&lt;/em> to compute: &lt;div class="has-mathjax">
+\[ y^{\prime} = h(f(x)) \]
+&lt;/div>
+Where &lt;span class="has-mathjax">\( f \)&lt;/span>
+is a simple function, such as &lt;span class="has-mathjax">\( h(x+1) ; h(2x) \)&lt;/span>
+.&lt;/p>
+&lt;/blockquote>
+&lt;p>Not every hash function has this property.&lt;/p>
+&lt;p>Turns out that there is two known types of hash functions with different types of contruction: Markle-Dangard construction (MD5, SHA-1, SHA2), and Sponge construction (SHA3).&lt;/p>
+&lt;p>Markle-Dangard computes the hash iteratably with blocks, processing a chunk of the input information at a time, meaning that an input is &lt;span class="has-mathjax">\( m = m_{1} || m_{2} || \cdots || m_{l} \)&lt;/span>
+, therefore, the hash function iterates through it like this &lt;span class="has-mathjax">\( y_{i} = h(y_{i-1}, m_{i}) \)&lt;/span>
+and &lt;span class="has-mathjax">\( h(m) = y_{l} \)&lt;/span>
+, each block is a fixed size, if the input size is not a multiple of the block size, there is a padding added at the end that does not alter the output of the entire function (i.e. a bunch of zeros to complete the block).&lt;/p>
+&lt;p>In particular, Markle-Dangard construction is susceptible to a Length Extension Attack (LEA), which comes from that padding, in particular if we give the hash function more blocks that are filled with zeroes, it will yield the same result&lt;/p>
+&lt;div class="has-mathjax">
+\[ h(m_{1} || \cdots || m_{l}) = h(m_{1} || \cdots || m_{l} || \text{0000000}) \]
+&lt;/div>
+&lt;p>Meaning &lt;span class="has-mathjax">\( y = y^{\prime} \)&lt;/span>
+, violating the property.&lt;/p>
+&lt;hr>
 &lt;h2 id="conclusion">Conclusion&lt;/h2>
 &lt;p>This was an interesting post to write, not only I wrote about something that I find very interesting, but also something that may be useful/interesting to someone else that may find it, I&amp;rsquo;m pretty sure I would have loved to find this kind of explanations when I was first dwelving into these subjects.&lt;/p></content></item><item><title>My First Post</title><link>https://aanzolaavila.github.io/posts/my-first-post/</link><pubDate>Wed, 17 Aug 2022 20:21:48 -0500</pubDate><guid>https://aanzolaavila.github.io/posts/my-first-post/</guid><description>Some text.
 An image Smiling Friends Some code $ echo &amp;#34;this is an example&amp;#34; Some math \[ g = f(x) = \int_0^\infty x\ dx \] Some inline math Inline shortcode \(a \ne 0\) with Mathjax.
