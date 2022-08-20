@@ -204,7 +204,7 @@ Not every hash function has this property.
 
 Turns out that there is two known types of hash functions with different types of contruction: Merkle-Damgard construction (MD5, SHA-1, SHA2), and Sponge construction (SHA3).
 
-Merkle-Damgard computes the hash iteratably with blocks, processing a chunk of the input information at a time, meaning that an input is {{< mathjax/inline >}}\( m = m_{1} || m_{2} || \cdots || m_{l} \){{< /mathjax/inline >}}, therefore, the hash function iterates through it like this {{< mathjax/inline >}}\( y_{i} = h(y_{i-1}, m_{i}) \){{< /mathjax/inline >}} and {{< mathjax/inline >}}\( h(m) = y_{l} \){{< /mathjax/inline >}}, each block is a fixed size, if the input size is not a multiple of the block size, there is a padding added at the end that does not alter the output of the entire function (i.e. a bunch of zeros to complete the block).
+Merkle-Damgard computes the hash iteratably with blocks, processing a chunk of the input information at a time, meaning that an input is {{< mathjax/inline >}}\( m = m_{1} || m_{2} || \cdots || m_{l} \){{< /mathjax/inline >}}, therefore, the hash function iterates through it like this {{< mathjax/inline >}}\( y_{i} = h(y_{i-1}, m_{i}) \){{< /mathjax/inline >}} and {{< mathjax/inline >}}\( h(m) = y_{l} \){{< /mathjax/inline >}}, each block has a fixed size, if the input size is not a multiple of the block size, there is a padding added at the end that does not alter the output of the entire function (i.e. a bunch of zeros to complete the block).
 
 In particular, Merkle-Damgard construction is susceptible to a Length Extension Attack (LEA), which comes from that padding, in particular if we give the hash function more blocks that are filled with zeroes, it will yield the same result
 
@@ -254,7 +254,7 @@ Before 37b59afd592725f9305e484a5d7f5168
 After  50cca4f19a66632fb7a417364ad05153
 ```
 
-Why is this 'attack' not working? This kind of scenario was already addressed with something called *padding*, for this [Wikipedia](https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction#Length_padding_example) already sets a good example of this.
+Why is this 'attack' not working? This kind of scenario was already addressed doing another type of *padding*, for this [Wikipedia](https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction#Length_padding_example) already sets a good example of this.
 
 ---
 
