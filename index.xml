@@ -197,7 +197,7 @@ is a simple function, such as &lt;span class="has-mathjax">\( h(x+1) ; h(2x) \)&
 &lt;p>Merkle-Damgard computes the hash iteratably with blocks, processing a chunk of the input information at a time, meaning that an input is &lt;span class="has-mathjax">\( m = m_{1} || m_{2} || \cdots || m_{l} \)&lt;/span>
 , therefore, the hash function iterates through it like this &lt;span class="has-mathjax">\( y_{i} = h(y_{i-1}, m_{i}) \)&lt;/span>
 and &lt;span class="has-mathjax">\( h(m) = y_{l} \)&lt;/span>
-, each block is a fixed size, if the input size is not a multiple of the block size, there is a padding added at the end that does not alter the output of the entire function (i.e. a bunch of zeros to complete the block).&lt;/p>
+, each block has a fixed size, if the input size is not a multiple of the block size, there is a padding added at the end that does not alter the output of the entire function (i.e. a bunch of zeros to complete the block).&lt;/p>
 &lt;p>In particular, Merkle-Damgard construction is susceptible to a Length Extension Attack (LEA), which comes from that padding, in particular if we give the hash function more blocks that are filled with zeroes, it will yield the same result&lt;/p>
 &lt;div class="has-mathjax">
 \[ h(m_{1} || \cdots || m_{l}) = h(m_{1} || \cdots || m_{l} || \text{0000000}) \]
@@ -236,7 +236,7 @@ and &lt;span class="has-mathjax">\( h(m) = y_{l} \)&lt;/span>
 &lt;p>&lt;strong>Output&lt;/strong>&lt;/p>
 &lt;pre tabindex="0">&lt;code>Before 37b59afd592725f9305e484a5d7f5168
 After 50cca4f19a66632fb7a417364ad05153
-&lt;/code>&lt;/pre>&lt;p>Why is this &amp;lsquo;attack&amp;rsquo; not working? This kind of scenario was already addressed with something called &lt;em>padding&lt;/em>, for this &lt;a href="https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction#Length_padding_example">Wikipedia&lt;/a> already sets a good example of this.&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>Why is this &amp;lsquo;attack&amp;rsquo; not working? This kind of scenario was already addressed doing another type of &lt;em>padding&lt;/em>, for this &lt;a href="https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction#Length_padding_example">Wikipedia&lt;/a> already sets a good example of this.&lt;/p>
 &lt;hr>
 &lt;h2 id="conclusion">Conclusion&lt;/h2>
 &lt;p>This was an interesting post to write, not only I wrote about something that I find very interesting, but also something that may be useful/interesting to someone else that may find it, I&amp;rsquo;m pretty sure I would have loved to find this kind of explanations when I was first dwelving into these subjects.&lt;/p></content></item><item><title>My First Post</title><link>https://aanzolaavila.github.io/posts/my-first-post/</link><pubDate>Wed, 17 Aug 2022 20:21:48 -0500</pubDate><guid>https://aanzolaavila.github.io/posts/my-first-post/</guid><description>Some text.
