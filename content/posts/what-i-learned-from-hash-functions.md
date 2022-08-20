@@ -25,11 +25,7 @@ So, without further ado, I'll dive in.
 ---
 
 # Hash function
-> A hash function is a one-way function {{< mathjax/inline >}}\( h \){{< /mathjax/inline >}} such that for a given input {{< mathjax/inline >}}\( x\in\{0, 1\}^{n} \){{< /mathjax/inline >}}, also called as *pre-image*, gives an output {{< mathjax/inline >}}\( y\in\{0, 1\}^{d} \){{< /mathjax/inline >}}, also known as *image*, where {{< mathjax/inline >}}\( n \){{< /mathjax/inline >}} is of any size and {{< mathjax/inline >}}\( d \){{< /mathjax/inline >}} is a constant, both are number of bits.
-
-{{< mathjax/block >}}
-\[ y = h(x) \]
-{{< /mathjax/block >}}
+> A hash function is a one-way function {{< mathjax/inline >}}\( h \){{< /mathjax/inline >}} such that for a given input {{< mathjax/inline >}}\( x\in\{0, 1\}^{n} \){{< /mathjax/inline >}}, also called as *pre-image*, gives an output {{< mathjax/inline >}}\( y\in\{0, 1\}^{d} \){{< /mathjax/inline >}}, also known as *image*, where {{< mathjax/inline >}}\( n \){{< /mathjax/inline >}} is of any size and {{< mathjax/inline >}}\( d \){{< /mathjax/inline >}} is a constant, both are number of bits.{{< mathjax/block >}}\[ y = h(x) \]{{< /mathjax/block >}}
 
 ---
 
@@ -170,6 +166,32 @@ Long story short, we have this constraints for each property:
 - PR, CR, and WCR \
   {{< mathjax/inline >}}\( d \ge 224 \){{< /mathjax/inline >}}
 
+### Applications
+
+There are multiple things that are desirable depending on the application that we need. For this I will briefly describe some scenarios.
+
+#### 1. Server-side authentication
+
+A common problem addressed with hash functions is the storage of credentials for user authentication, the worst kind of approach that you can do is store the plaintext password in your databases, as this can lead to unintended exposure of passwords from an information leakage, leaving your users insecure, as people usually leave the same passwords in other services and can cause an unintended access to their personal data.
+
+A somewhat better approach to this is to store the hash output from the plaintext password, meaning that you will not know what was the original password used for any user, BUT if you have a data leakage and those hashes get exposed, there is still a way to be vulnerable of knowing the password. Turns out that you can do a *dictionary attack*, which consists of a table of password-hash pairs with the most common passwords used in web services, that way you can query a password that yields that specific hash, it does not even have to be the same password! as there can be collitions as we already saw previously.
+
+The most common and advised way of dealing with this is to store the hash and a **salt** value, which is just a random number generated at the creation of the field.
+{{< mathjax/block >}}
+\[ \text{hash} = h(\text{password} || \text{salt}) \]
+{{< /mathjax/block >}}
+
+That way a dictionary attack is useless.
+
+#### 2. File integrity
+
+Another common thing to check is the integrity of a file, in this scenario you will have two things: a file and a text file containing the hash value for that file. On common use case for this is when you are downloading a file from the web and for some reason it gets corrupted in transit, therefore there is a lot of places that publish the hash alongside the download button.
+
+{{< figure src="/img/ubuntu-file-integrity-check.png" alt="File integrity check" caption="Ubuntu file integrity checking from its download page" style="width:60%;" position="center" >}}
+
+Q: What property is desirable for this use case?
+A: WCR, as we already have the input for the function (the file), it should be infeasible to find another input that yields the same hash output.
+
 ---
 
 ## Bonus
@@ -180,17 +202,59 @@ There is an additional property not often discussed: **Non-malleability**.
 
 Not every hash function has this property.
 
-Turns out that there is two known types of hash functions with different types of contruction: Markle-Dangard construction (MD5, SHA-1, SHA2), and Sponge construction (SHA3).
+Turns out that there is two known types of hash functions with different types of contruction: Merkle-Damgard construction (MD5, SHA-1, SHA2), and Sponge construction (SHA3).
 
-Markle-Dangard computes the hash iteratably with blocks, processing a chunk of the input information at a time, meaning that an input is {{< mathjax/inline >}}\( m = m_{1} || m_{2} || \cdots || m_{l} \){{< /mathjax/inline >}}, therefore, the hash function iterates through it like this {{< mathjax/inline >}}\( y_{i} = h(y_{i-1}, m_{i}) \){{< /mathjax/inline >}} and {{< mathjax/inline >}}\( h(m) = y_{l} \){{< /mathjax/inline >}}, each block is a fixed size, if the input size is not a multiple of the block size, there is a padding added at the end that does not alter the output of the entire function (i.e. a bunch of zeros to complete the block).
+Merkle-Damgard computes the hash iteratably with blocks, processing a chunk of the input information at a time, meaning that an input is {{< mathjax/inline >}}\( m = m_{1} || m_{2} || \cdots || m_{l} \){{< /mathjax/inline >}}, therefore, the hash function iterates through it like this {{< mathjax/inline >}}\( y_{i} = h(y_{i-1}, m_{i}) \){{< /mathjax/inline >}} and {{< mathjax/inline >}}\( h(m) = y_{l} \){{< /mathjax/inline >}}, each block is a fixed size, if the input size is not a multiple of the block size, there is a padding added at the end that does not alter the output of the entire function (i.e. a bunch of zeros to complete the block).
 
-In particular, Markle-Dangard construction is susceptible to a Length Extension Attack (LEA), which comes from that padding, in particular if we give the hash function more blocks that are filled with zeroes, it will yield the same result
+In particular, Merkle-Damgard construction is susceptible to a Length Extension Attack (LEA), which comes from that padding, in particular if we give the hash function more blocks that are filled with zeroes, it will yield the same result
 
 {{< mathjax/block >}}
 \[ h(m_{1} || \cdots || m_{l}) = h(m_{1} || \cdots || m_{l} || \text{0000000}) \]
 {{< /mathjax/block >}}
 
 Meaning {{< mathjax/inline >}}\( y = y^{\prime} \){{< /mathjax/inline >}}, violating the property.
+
+Checking this on actual code, if we use a library implementation of these hash functions we can check if this happens. So I set out an example written in Go.
+
+**Code**
+```go
+package main
+
+import (
+	"crypto/md5"
+	"fmt"
+)
+
+func main() {
+	hash := md5.New()
+
+	data := []byte{0x0, 0x1, 0x2, 0x3}
+	hash.Write(data)
+	out := hash.Sum(nil)
+
+	data = out[:]
+
+	fmt.Printf("Before %x\n", data)
+
+	moreData := []byte{0x0, 0x0}
+	data = append(data, moreData...)
+	hash.Write(data)
+	out = hash.Sum(nil)
+
+	data = out[:]
+	fmt.Printf("After  %x\n", data)
+}
+```
+
+Run it with `$ go run main.go`, assuming that you are in a Unix environment.
+
+**Output**
+```
+Before 37b59afd592725f9305e484a5d7f5168
+After  50cca4f19a66632fb7a417364ad05153
+```
+
+Why is this 'attack' not working? This kind of scenario was already addressed with something called *padding*, for this [Wikipedia](https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction#Length_padding_example) already sets a good example of this.
 
 ---
 
