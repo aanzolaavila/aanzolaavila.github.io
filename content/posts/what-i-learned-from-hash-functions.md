@@ -170,11 +170,11 @@ Long story short, we have this constraints for each property:
 - PR, CR, and WCR \
   \\( d \ge 224 \\)
 
-### Applications
+## Applications
 
 There are multiple things that are desirable depending on the application that we need. For this I will briefly describe some scenarios.
 
-#### 1. Server-side authentication
+### 1. Server-side authentication
 
 A common problem addressed with hash functions is the storage of credentials for user authentication, the worst kind of approach that you can do is store the plaintext password in your databases, as this can lead to unintended exposure of passwords from an information leakage, leaving your users insecure, as people usually leave the same passwords in other services and can cause an unintended access to their personal data.
 
@@ -187,7 +187,7 @@ $$
 
 That way a dictionary attack is useless.
 
-#### 2. File integrity
+### 2. File integrity
 
 Another common thing to check is the integrity of a file, in this scenario you will have two things: a file and a text file containing the hash value for that file. On common use case for this is when you are downloading a file from the web and for some reason it gets corrupted in transit, therefore there is a lot of places that publish the hash alongside the download button.
 
