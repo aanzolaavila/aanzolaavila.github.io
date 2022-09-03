@@ -23,11 +23,11 @@ $ echo "this is an example"
 ```
 
 # Some math
-{{< mathjax/block >}}
-\[ g = f(x) = \int_0^\infty x\ dx \]
-{{< /mathjax/block >}}
+$$
+ g = f(x) = \int_0^\infty x\ dx
+$$
 
 ## Some inline math
-Inline shortcode {{< mathjax/inline >}}\(a \ne 0\){{< /mathjax/inline >}} with Mathjax.
+Inline shortcode \\(a \ne 0 \\) with Mathjax.
 
 Some random change.
