@@ -12,6 +12,8 @@ readingTime = true
 hideComments = true
 +++
 
+{{< katex >}}
+
 Some text.
 
 # An image
