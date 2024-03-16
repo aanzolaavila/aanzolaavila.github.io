@@ -25,6 +25,15 @@ name = "Publications"
 pageRef = "publications"
 weight = 30
 
+[[main]]
+name = "GitHub"
+url = "https://github.com/aanzolaavila"
+weight = 40
+[main.params]
+icon = "github"
+showName = false
+target = "_blank"
+
 
 # -- Footer Menu --
 # The footer menu is displayed at the bottom of the page, just before
