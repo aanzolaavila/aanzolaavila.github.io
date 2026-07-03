@@ -8,11 +8,11 @@ title = "Alejandro Anzola-Ávila"
 # copyright = "Copy, _right?_ :thinking_face:"
 
 
-[author]
+[params.author]
 name = "Alejandro Anzola-Ávila"
 image = "img/author.jpeg"
 headline = "Computer geek with a lot of interest for deep learning, algorithms, science, and just life in general"
-bio = "Software engineer with experience in Platform engineering and DevOps"
+bio = "Software engineer with experience in Platform engineering and Devops"
 links = [
   { email = "mailto:me@alejandroanzola.info" },
   #   { link = "https://link-to-some-website.com/" },
@@ -30,7 +30,7 @@ links = [
   { gitlab = "https://gitlab.com/aanzolaavila" },
   #   { google = "https://www.google.com/" },
   #   { hashnode = "https://username.hashnode.dev" },
-  #   { instagram = "https://instagram.com/username" },
+  { instagram = "https://instagram.com/aanzolaavila" },
   #   { keybase = "https://keybase.io/username" },
   #   { kickstarter = "https://www.kickstarter.com/profile/username" },
   #   { lastfm = "https://lastfm.com/user/username" },
